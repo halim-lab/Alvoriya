@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Checkout | ALVORIYA</title>
+  <link rel="stylesheet" href="styles.css?v=2">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="https://alvoriyagroup-2026.netlify.app" style="text-decoration: none;">
+      <div class="logo">ALVORI<span class="gradient-text">YA</span>.</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#product">Product</a></li>
+      <li><a href="vision.html">Vision</a></li>
+      <li><a href="activities.html">Activities</a></li>
+      <li><a href="index.html#moments">Events</a></li>
+      <li><a href="organization.html">Organization</a></li>
+      <li><a href="checkout.html" class="btn btn-primary" style="padding: 0.5rem 1.5rem; margin-top: -0.5rem; font-size: 0.9rem;">Checkout</a></li>
+    </ul>
+    <button class="mobile-menu-btn">
+      <ion-icon name="menu-outline"></ion-icon>
+    </button>
+  </nav>
+
+  <!-- Checkout Section -->
+  <section style="padding-top: 15vh; min-height: 100vh;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      
+      <div style="text-align: left; margin-bottom: 2rem;">
+        <h1 style="font-size: 3rem; margin-bottom: 0.5rem;">Secure Checkout</h1>
+        <p style="color: var(--text-muted); font-size: 1.1rem;">Complete your order below to bring Cabelpot into your daily workflow.</p>
+      </div>
+
+      <div class="grid-2 fade-in-up" style="align-items: start; gap: 3rem;">
+        
+        <!-- Left: Order Summary -->
+        <div class="glass-panel" style="padding: 2.5rem; position: sticky; top: calc(var(--nav-height) + 2rem);">
+          <img src="ALVORIYA.jpeg" alt="Cabelpot Feature" style="width: 100%; border-radius: 12px; border: 1px solid var(--surface-border); margin-bottom: 1.5rem; aspect-ratio: 16/9; object-fit: cover;">
+          <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Cabelpot by Alvoriya</h3>
+          <p style="color: var(--primary-color); font-size: 0.95rem; font-weight: 600; margin-bottom: 1rem;">Smart & Practical Solution. ⚙️✨</p>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 2rem;">
+            An innovative tool that streamlines your daily workflow with durability and maximum functionality.
+          </p>
+          
+          <div style="display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--surface-border); padding-bottom: 2rem;">
+            <span style="font-size: 2.5rem; font-weight: 800;">Rp 29.000</span>
+            <span style="color: var(--text-muted);">/ unit</span>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; color: var(--text-muted); font-size: 0.95rem;">
+            <span>Shipping</span>
+            <span>Calculated at checkout</span>
+          </div>
+          
+          <div style="display: flex; justify-content: space-between; margin-bottom: 2rem; font-size: 1.25rem; font-weight: 800;">
+            <span>Total Amount</span>
+            <span>Rp 29.000</span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-muted); font-size: 0.85rem;">
+            <ion-icon name="lock-closed-outline" style="font-size: 1.2rem;"></ion-icon>
+            Secure 256-bit SSL encryption.
+          </div>
+        </div>
+
+        <!-- Right: Order Form -->
+        <div class="glass-panel" style="padding: 2.5rem;">
+          <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--surface-border); padding-bottom: 1rem;">Order Details</h3>
+          
+          <form name="checkout_form" method="POST" data-netlify="true" action="success.html">
+            <div class="form-group">
+              <label>Quantity</label>
+              <input type="number" name="qty" value="1" min="1" style="width: 100px;">
+            </div>
+
+            <h4 style="margin: 2rem 0 1rem 0; font-size: 1.1rem; color: var(--text-muted);">Contact Information</h4>
+            
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" name="full_name" placeholder="Jane Doe" required>
+            </div>
+            
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" name="email" placeholder="jane@example.com" required>
+            </div>
+            
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" name="phone_number" placeholder="081234567890" required>
+            </div>
+
+            <h4 style="margin: 2rem 0 1rem 0; font-size: 1.1rem; color: var(--text-muted);">Shipping Address</h4>
+            
+            <div class="form-group">
+              <label>Country</label>
+              <select name="country" required>
+                <option value="">Select a country</option>
+                <option value="ID">Indonesia</option>
+                <option value="MY">Malaysia</option>
+                <option value="SG">Singapore</option>
+              </select>
+            </div>
+
+            <div class="grid-2">
+              <div class="form-group">
+                <label>Province / State</label>
+                <select name="province" required>
+                  <option value="">Select province first</option>
+                  <option value="DKI">DKI Jakarta</option>
+                  <option value="JB">Jawa Barat</option>
+                  <option value="JT">Jawa Tengah</option>
+                  <option value="JI">Jawa Timur</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>City</label>
+                <input type="text" name="city" placeholder="Your city" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Street Address</label>
+              <input type="text" name="street_address" placeholder="123 Design Avenue, Apt 4B" required>
+            </div>
+
+            <div class="form-group">
+              <label>ZIP / Postal Code</label>
+              <input type="text" name="zip_code" placeholder="40111" style="width: 150px;" required>
+            </div>
+
+            <h4 style="margin: 2rem 0 1rem 0; font-size: 1.1rem; color: var(--text-muted);">Payment Method</h4>
+            
+            <div class="form-group">
+              <label>Select Payment Option</label>
+              <select name="payment_method" required>
+                <option value="">Choose your payment method...</option>
+                <option value="BCA">Bank Transfer (BCA)</option>
+                <option value="Mandiri">Bank Transfer (Mandiri)</option>
+                <option value="OVO">OVO / GoPay</option>
+                <option value="CC">Credit / Debit Card</option>
+              </select>
+            </div>
+
+            <h4 style="margin: 2rem 0 1rem 0; font-size: 1.1rem; color: var(--text-muted);">Additional Notes</h4>
+            
+            <div class="form-group">
+              <label>Order Notes (Optional)</label>
+              <textarea name="order_notes" placeholder="Any special instructions for delivery?"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; border-radius: 12px; padding: 1.25rem; font-size: 1.1rem; margin-top: 1rem;">Complete Order</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Dark Footer -->
+  <footer class="footer-dark" style="margin-top: 0; padding-top: 2rem;">
+    <div class="footer-bottom" style="border-top: none;">
+      <p style="color: #777;">&copy; <script>document.write(new Date().getFullYear())</script> ALVORIYA. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

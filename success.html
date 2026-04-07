@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Submitted | ALVORIYA</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-image: url('background_gold.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Abstract Glow Overlay */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 255, 255, 0.3); /* Soft bright overlay */
+            box-shadow: inset 0 0 100px rgba(255,255,255,0.8);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .success-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 100px rgba(201, 162, 74, 0.1);
+            position: relative;
+            z-index: 10;
+            animation: cardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+        }
+
+        @keyframes cardEntrance {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .icon-container {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1;
+            animation: popIcon 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        @keyframes popIcon {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            color: #1a1a1a;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #333;
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .desc {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #eaeaea;
+            margin: 25px 0;
+        }
+
+        /* Progress Checklist */
+        .checklist {
+            text-align: left;
+            margin: 0 auto;
+            max-width: 300px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+            color: #444;
+            font-weight: 500;
+        }
+
+        .checklist-item.pending {
+            color: #999;
+        }
+
+        .check-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 0.8rem;
+        }
+
+        .check-icon.active {
+            background: #88B04B; /* Muted aesthetic green */
+            color: white;
+        }
+
+        .check-icon.inactive {
+            border: 1.5px solid #ddd;
+            color: transparent;
+        }
+
+        .email-notice {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 25px;
+        }
+
+        .email-notice svg {
+            width: 16px;
+            height: 16px;
+            fill: #C9A24A;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #ddd;
+            color: #555;
+        }
+
+        .btn-outline:hover {
+            background: #f8f8f8;
+            color: #111;
+            border-color: #bbb;
+        }
+
+        .btn-primary {
+            background: #C9A24A;
+            color: white;
+            box-shadow: 0 4px 15px rgba(201, 162, 74, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 162, 74, 0.5);
+            background: #b8913b;
+        }
+
+        /* Confetti Canvas */
+        #confetti-canvas {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 5;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="success-card">
+        <div class="icon-container">
+            🎉
+        </div>
+        
+        <h1>Application Submitted!</h1>
+        <p class="subtitle">Thank you for joining <strong>ALVORIYA</strong> 🚀</p>
+        <p class="desc">Our team will review your application within 3-5 days.</p>
+
+        <hr>
+
+        <div class="checklist">
+            <div class="checklist-item">
+                <div class="check-icon active">✓</div>
+                Application Submitted
+            </div>
+            <div class="checklist-item">
+                <div class="check-icon active">✓</div>
+                Under Review
+            </div>
+            <div class="checklist-item pending">
+                <div class="check-icon inactive"></div>
+                Interview Stage
+            </div>
+            <div class="checklist-item pending">
+                <div class="check-icon inactive"></div>
+                Accepted
+            </div>
+        </div>
+
+        <div class="email-notice">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM19.6 8.25L12.53 12.67C12.21 12.87 11.79 12.87 11.47 12.67L4.4 8.25C4.15 8.09 4 7.82 4 7.53C4 6.86 4.73 6.46 5.3 6.81L12 11L18.7 6.81C19.27 6.46 20 6.86 20 7.53C20 7.82 19.85 8.09 19.6 8.25Z"/></svg>
+            Please check your email for updates.
+        </div>
+
+        <div class="button-group">
+            <a href="index.html" class="btn btn-outline">Back to Home</a>
+            <a href="activities.html" class="btn btn-primary">Explore Activities</a>
+        </div>
+    </div>
+
+    <!-- Minimal Confetti JS Implementation -->
+    <script>
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const pieces = [];
+        const colors = ['#C9A24A', '#E3C37A', '#fff', '#f0f0f0'];
+
+        class Piece {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 8 + 4;
+                this.speedY = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 2 - 1;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.angle = Math.random() * 360;
+                this.spin = Math.random() * 0.1 - 0.05;
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                this.angle += this.spin;
+                if (this.y > canvas.height) {
+                    this.y = -this.size;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = 0.8;
+                ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size * 0.6);
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 150; i++) {
+            pieces.push(new Piece());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            pieces.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+
+        // Delay confetti slightly for impact
+        setTimeout(animate, 300);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
